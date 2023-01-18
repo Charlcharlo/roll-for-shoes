@@ -1,0 +1,49 @@
+<%- include("general-partials/header") %>
+<%- include("general-partials/navbar") %>
+
+<div class="titleBlock">
+    <h1 class="title">Character Builder</h1>
+</div>
+<form id="characterBuilder" action="/<%= character._id %>/edit-character" method="post">
+    <div class="contentBlock">
+        <%- include("form-partials/edit-info") %>
+    </div>
+    <div class="contentBlock">
+        <div class="infoForm">
+            <h2 class="subTitle">Skills</h2>
+            <div class="skillsBuilder">
+                <div class="inputSkillAndDice" id="doAnythingInput">
+                    <input class="r4sInput" type="text" value="Do Anything" disabled>
+                    <div class="formDieContainer">
+                        <input class="r4sInput" type="number" value="1" disabled>
+                        <h2 class="subTitle">d6</h2>
+                    </div>
+                    <button class="deleteBtn">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </button>
+                </div>
+                <%- include("form-partials/edit-skills") %>
+            </div>
+        </div>
+    </div>
+    <div class="contentBlock submitButtons">
+        <button class="contentBtn hlButton" id="newSkill" type="submit">
+            Save
+            <span class="material-symbols-outlined">
+                done
+            </span>
+        </button>
+        <button class="contentBtn" type="button" value="<%= character.new %>" id="cancelButton">
+            Cancel
+            <span class="material-symbols-outlined">
+                close
+            </span>
+        </button>
+    </div>
+</form>
+
+<%- include("general-partials/scripts") %>
+<script src="/builder.js"></script>
+<%- include("general-partials/footer") %>

@@ -1,0 +1,50 @@
+<%- include("general-partials/header") %>
+<%- include("general-partials/navbar") %>
+
+<div class="titleBlock">
+        <h1 class="title">My Characters</h1>
+</div>
+<div class="contentBlock" id="charCollection">
+    <% characters.forEach(element => { %>
+        <div class="infoBlock charBlock">
+            <div class="charCollNameBlock">
+                <div>
+                    <h1 class="title"><%= element.name %></h1>
+                    <h2 class="subTitle"><%= element.summary %></h2>
+                </div>
+                <button class="deleteBtn deleteChar" value="<%= element._id %>">
+                    <span class="material-symbols-outlined">
+                        delete
+                    </span>
+                </button>
+            </div>
+            <div class="charBlockBottom">
+                <div class="charButtons">
+                    <button class="contentBtn hlButton linkBtn">
+                        <a href="/sheet/<%= element._id %>" class="link">View Sheet</a>
+                            <span class="material-symbols-outlined">
+                                visibility
+                            </span>
+                    </button>
+                    <button class="contentBtn linkBtn">
+                        <a href="/character-builder/<%= element._id %>">Edit Character</a>
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+    <div class="infoBlock charBlock" id="newCharacter">
+        <form action="/characters/new" method="post"></form>
+        <span class="material-symbols-outlined">
+            add_circle
+        </span>
+        <h1 class="title">New Character</h1>
+    </div>
+</div>
+
+<%- include("general-partials/scripts") %>
+<script src="/collection.js"></script> 
+<%- include("general-partials/footer") %>

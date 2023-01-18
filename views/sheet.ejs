@@ -1,0 +1,166 @@
+<%- include("general-partials/header") %>
+<%- include("general-partials/navbar") %>
+
+    <!-- Name & XP -->
+
+    <div class="titleBlock" id="sheetTitle">
+        <div  id="charName">
+            <h1 class="title"><%= character.name %></h1>
+            <h2 class="subTitle"><%= character.summary %></h2>
+        </div>
+        <div>
+            <div class="infoBlock" id="charXp">
+                <div id="xpDown">
+                    <h1 class="title">-</h1>
+                </div>
+                <div>
+                    <div>
+                        <h1 class="title" id="xpCurrent"><%= character.xp %></h1>
+                        <h2 class="subTitle">XP</h2>
+                    </div>
+                </div>
+                <div id="xpUp">
+                    <h1 class="title">+</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills -->
+
+    <div class="contentBlock buttonBlock" id="skillButtons">
+        <div>
+            <h1 class="title">Skills</h1>
+        </div>
+        <div>
+            <button class="contentBtn hlButton" id="newSkill" type="button" data-toggle="modal" data-target="#newSkillModal">
+                <span class="material-symbols-outlined">
+                    add_circle
+                </span>
+                New Skill
+            </button>
+            <button class="contentBtn" type="button" data-toggle="modal" data-target="#editSkillsModal">
+                Edit Skills
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="contentBlock" id="skillsSection">
+        <div class="infoBlock skillBlock utilityBlock" id="doAnything">
+            <div>
+                <h1 class="title">Do Anything</h1>
+            </div>
+            <div>
+                <h1 class="title">1d6</h1>
+            </div>
+        </div>
+        <% character.skills.forEach(skill => { %>
+            <div class="infoBlock skillBlock">
+                <div>
+                    <h1 class="title"><%= skill.name %></h1>
+                </div>
+                <div>
+                    <h1 class="title">
+                        <span id="dieNum<%= skill.cc %>"><%= skill.dice %></span>d6
+                    </h1>
+                </div>
+                <div class="increaseDie">
+                    <h1 class="title">+</h1>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <!-- Backstory -->
+
+    <div class="contentBlock buttonBlock" id="backstoryButtons">
+        <div>
+            <h1 class="title">Backstory</h1>
+        </div>
+        <div>
+            <button class="contentBtn" type="button" data-toggle="modal" data-target="#editInfoModal">
+                Edit Info
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="contentBlock">
+        <div class="infoBlock" id="backstoryContent">
+            <p class="textBody"><%= character.backstory %></p>
+        </div>
+    </div>
+
+    <!-- modals -->
+
+    <div class="modal fade" id="newSkillModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content r4sModal">
+            <div class="modal-header">
+              <h5 class="title">New Skill</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <form action="/<%= character._id %>/new-skill" method="post">
+                <div class="modal-body">
+                    <%- include("form-partials/skill") %> 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="contentBtn hlButton">
+                        Add
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+                    </button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editSkillsModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content r4sModal">
+            <div class="modal-header">
+              <h5 class="title">Edit Skills</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <form action="/<%= character._id %>/edit-skills" method="post">
+                <div class="modal-body">
+                    <%- include("form-partials/edit-skills") %> 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="contentBtn hlButton">Save Changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editInfoModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content r4sModal">
+            <div class="modal-header">
+              <h5 class="title">Edit Info</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <form action="/<%= character._id %>/edit-info" method="post">
+                <div class="modal-body">
+                    <%- include("form-partials/edit-info") %> 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="contentBtn hlButton">Save Changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+<%- include("general-partials/scripts") %>
+
+<script src="/sheet.js"></script>
+
+<%- include ("general-partials/footer") %>

@@ -1,0 +1,736 @@
+:root {
+  --greyL: #d1d1d8;
+  --greyM: #b3b3b3;
+  --greyD: #323232;
+  --purpleL: #474787;
+  --purpleD: #2c2c53;
+  --highlight: #34ace0;
+
+  --bodyFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --titleFont: "Krona One", sans-serif;
+
+  --leftOnly: 10px 0 0 10px;
+  --rightOnly: 0 10px 10px 0;
+  --bottonOnly: 0 0 10px 10px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--bodyFont);
+  background-color: var(--greyD);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+a {
+  color: var(--greyL);
+}
+
+a:hover {
+  color: var(--highlight);
+}
+
+#everything {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+/* Text */
+
+.title {
+  color: white;
+  font-family: var(--titleFont);
+  font-size: 3rem;
+}
+
+.subTitle {
+  color: var(--greyL);
+  font-family: var(--titleFont);
+  font-size: 1.2rem;
+}
+
+/* Navbar */
+
+.r4sNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 10%;
+  background-color: var(--purpleD);
+  color: white;
+}
+
+.r4sNavbar .title {
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.r4sNavbar a:hover {
+  color: var(--highlight);
+}
+
+.navItems {
+  display: flex;
+}
+
+.navItems a {
+  font-family: var(--bodyFont);
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+/* footer */
+
+#footer {
+  width: 100%;
+  padding-top: 20px;
+  margin-top: 20px;
+  justify-content: center;
+  background-color: var(--purpleD);
+}
+
+#footer .subTitle {
+  font-size: 0.8rem;
+  color: var(--greyM);
+}
+
+/* Login */
+
+#loginSignup {
+  text-align: center;
+}
+
+#loginSignup .titleBlock,
+#loginSignup .contentBlock {
+  justify-content: center;
+}
+
+#loginSignup .textBody {
+  text-align: center;
+  max-width: calc(40vw - 40px);
+  color: var(--greyL);
+  font-style: italic;
+}
+
+#loginSignup .titleBlock .title {
+  font-size: 4rem;
+}
+
+#loginSignup .titleBlock .subTitle {
+  color: white;
+  font-style: normal;
+  margin-bottom: 10px;
+}
+
+.loginBlock {
+  min-width: 40vw;
+  padding: 20px 20px 10px 10px !important;
+}
+
+.loginBlock .subTitle {
+  text-align: left;
+  margin: 0 0 10px 10px;
+}
+
+.loginBlock .r4sInput {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.loginBlock .contentBtn {
+  border: none;
+  padding: 10px 20px;
+  /* width: 100%; */
+  color: white;
+}
+
+.loginButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.r4sCheckAndName {
+  margin-left: 10px;
+  color: var(--greyL);
+}
+
+.r4sCheckAndName input {
+  background-color: var(--greyL);
+  border: none;
+  vertical-align: baseline;
+}
+
+.oAuthBlock {
+  min-width: 40vw;
+  padding: 16px !important;
+  background-color: var(--purpleD) !important;
+  border: 4px solid var(--purpleL);
+}
+
+.oAuthBlock:hover {
+  border-color: var(--highlight);
+  background-color: var(--highlight) !important;
+}
+
+.oAuthBlock:hover .oAuthLink,
+.oAuthLink:hover {
+  color: white;
+}
+
+.oAuthLink {
+  text-decoration: none;
+  vertical-align: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oAuthLink span {
+  margin-right: 20px;
+  font-size: 1.5rem;
+}
+
+.loginBreak .title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Character Sheet */
+
+.contentBlock {
+  padding: 20px calc(10% - 20px) 0;
+  display: flex;
+}
+
+.infoBlock {
+  padding: 20px;
+  background-color: var(--purpleL);
+  border-radius: 10px;
+}
+
+.infoBlock .title {
+  font-size: 1.5rem;
+}
+
+.infoBlock .subTitle {
+  font-size: 1rem;
+}
+
+/* Name & XP */
+
+.titleBlock {
+  background-color: var(--purpleL);
+  padding: 20px 10%;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+#sheetTitle {
+  padding: 0 calc(10% - 20px) 20px;
+}
+
+.titleBlock .subTitle {
+  font-style: italic;
+}
+
+#charName {
+  flex-grow: 1;
+  margin: 20px 20px 0;
+}
+
+#charXp {
+  text-align: center;
+  display: flex;
+  padding: 0;
+  float: right;
+  margin: 20px 0 0;
+}
+
+#charXp > div {
+  padding: 20px;
+  background-color: var(--purpleD);
+  display: flex;
+  align-items: center;
+}
+
+#charXp > div:first-child {
+  border-radius: var(--leftOnly);
+  cursor: pointer;
+}
+
+#charXp > div:last-child {
+  border-radius: var(--rightOnly);
+  cursor: pointer;
+}
+
+#charXp > div:first-child:hover,
+#charXp > div:last-child:hover {
+  background-color: var(--highlight);
+}
+
+/* Skills */
+
+#skillsSection,
+#charCollection {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.skillBlock {
+  flex-grow: 1;
+  width: calc(50% - 10px);
+  max-width: calc(50% - 10px);
+  margin-bottom: 20px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+}
+
+.skillBlock div {
+  padding: 20px;
+}
+
+.skillBlock > div:first-child {
+  flex-grow: 1;
+}
+
+.skillBlock > div:last-child {
+  background-color: var(--purpleD);
+  border-radius: var(--rightOnly);
+  border: 4px solid var(--purpleL);
+  border-left: none;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.skillBlock > div:last-child:hover {
+  background-color: var(--highlight);
+  border-color: var(--highlight);
+}
+
+.utilityBlock {
+  background-color: var(--purpleD);
+  border: 4px solid var(--purpleL);
+}
+
+.utilityBlock > div {
+  padding: 16px;
+}
+
+.utilityBlock div:last-child,
+.utilityBlock div:last-child:hover {
+  background-color: transparent;
+  visibility: none;
+  border: none;
+}
+
+/* Buttons */
+
+.buttonBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.buttonBlock div:last-child {
+  display: flex;
+}
+
+.buttonBlock .title {
+  font-size: 1.5rem;
+  color: var(--greyL);
+  margin-left: 20px;
+}
+
+#skillButtons .contentBtn:first-child {
+  border-radius: var(--leftOnly);
+}
+
+#skillButtons .contentBtn:last-child {
+  border-radius: var(--rightOnly);
+}
+
+#skillButtons .contentBtn:first-child .material-symbols-outlined {
+  margin: 0 16px 0 0;
+}
+
+.contentBtn {
+  background-color: var(--purpleD);
+  border: 4px solid var(--purpleL);
+  padding: 5px 16px;
+  border-radius: 10px;
+
+  font-family: var(--bodyFont);
+  font-size: 1.2rem;
+  color: var(--greyL);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.hlButton {
+  background-color: var(--purpleL);
+  color: white;
+}
+
+.contentBtn .material-symbols-outlined {
+  margin: 0 0 0 16px;
+}
+
+.contentBtn:hover {
+  background-color: var(--highlight) !important;
+  border-color: var(--highlight);
+  color: white !important;
+}
+
+/* Backstory */
+
+#backstoryButtons {
+  padding-top: 0;
+}
+
+#backstoryContent {
+  min-width: 100%;
+}
+
+.textBody {
+  text-align: justify;
+  color: white;
+  white-space: pre-wrap;
+}
+
+/* modals */
+
+.r4sModal {
+  background-color: var(--purpleD);
+  border: 4px solid var(--purpleL);
+  color: white;
+  /* width: 60vw; */
+}
+
+.r4sModal .title {
+  font-size: 1.5rem;
+}
+
+.modal-header {
+  background-color: var(--purpleL);
+  width: 100%;
+  border-bottom: none;
+  border-radius: 0;
+  align-items: flex-start;
+  padding: 20px 36px 20px 26px;
+}
+
+.modal-body {
+  padding: 20px 16px 0;
+}
+
+.modal-footer {
+  border: none;
+  padding-top: 0;
+}
+
+.close,
+.deleteBtn {
+  background-color: var(--purpleL);
+  border: none;
+  color: var(--greyL);
+  font-size: 1.3rem;
+  margin: 0;
+  padding: 0;
+}
+
+#editSkillsModal #addSkillBuilder {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+/* forms */
+
+.inputSkillAndDice {
+  display: flex;
+  padding: 0 20px 0 0;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.r4sInput {
+  flex-grow: 1;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: var(--greyD);
+  background-color: var(--greyL);
+}
+
+textarea.r4sInput {
+  resize: none;
+}
+
+.formDieContainer {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.formDieContainer input {
+  width: 4rem !important;
+  text-align: center;
+}
+
+.formDieContainer .subTitle {
+  margin-left: 20px;
+  font-size: 1.5rem;
+}
+
+.deleteBtn {
+  margin-left: 20px;
+  background-color: var(--purpleD);
+}
+
+.deleteBtn span {
+  vertical-align: baseline;
+  font-size: 1.2rem;
+}
+
+.close:hover,
+.deleteBtn:hover {
+  color: var(--highlight);
+}
+
+.infoForm {
+  width: 100%;
+}
+
+.infoForm .r4sInput {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.infoForm .subTitle {
+  margin-bottom: 10px;
+}
+
+/* Character Collection */
+
+.charBlock {
+  max-width: calc(50% - 10px);
+  width: 49%;
+  flex-grow: 1;
+  margin-bottom: 20px;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.charBlock > div {
+  padding: 20px;
+}
+
+.charBlock .subTitle {
+  font-style: italic;
+}
+
+.charCollNameBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 150px;
+}
+
+.charCollNameBlock div:first-child {
+  flex-grow: 1;
+}
+
+.charCollNameBlock .deleteBtn {
+  background-color: var(--purpleL);
+  vertical-align: top;
+}
+
+.charCollNameBlock .deleteBtn span {
+  font-size: 1.5rem;
+  vertical-align: top;
+}
+
+.charBlockBottom {
+  background-color: var(--purpleD);
+  border-radius: var(--bottonOnly);
+  min-height: 100px;
+}
+
+.charButtons {
+  display: flex;
+}
+
+.charButtons .contentBtn {
+  flex-grow: 1;
+  justify-content: flex-start;
+  padding: 10px 16px;
+}
+
+.charButtons .contentBtn:first-child {
+  border-radius: var(--leftOnly);
+}
+
+.charButtons .contentBtn:last-child {
+  border-radius: var(--rightOnly);
+}
+
+.charButtons .contentBtn a {
+  color: white;
+  text-decoration: none;
+}
+
+.deleteLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--greyL);
+  text-decoration: none;
+  /* padding: 0 !important; */
+}
+
+.r4sLink {
+  color: var(--greyL);
+  text-decoration: none;
+}
+
+.deleteLink:hover,
+.deleteLink:hover .r4sLink {
+  color: var(--highlight);
+  cursor: pointer;
+}
+
+#newCharacter {
+  min-height: 250px;
+  background-color: var(--purpleD);
+  border: 4px solid var(--purpleL);
+
+  justify-content: center;
+  align-items: center;
+}
+
+#newCharacter:hover {
+  /* background-color: var(--highlight); */
+  border-color: var(--highlight);
+  cursor: pointer;
+}
+
+#newCharacter .title {
+  font-size: 2rem;
+  color: var(--greyL);
+}
+
+#newCharacter:hover .title {
+  color: white;
+}
+
+#newCharacter .material-symbols-outlined {
+  font-size: 6rem;
+  color: var(--greyL);
+  margin-bottom: 20px;
+}
+
+#newCharacter:hover .material-symbols-outlined {
+  color: white;
+}
+
+/* Builder */
+
+#characterBuilder .subTitle {
+  margin-left: 20px;
+}
+
+#characterBuilder > .contentBlock .r4sInput {
+  margin-left: 10px;
+}
+
+.infoForm .deleteBtn {
+  background-color: var(--greyD);
+}
+
+.infoForm .r4sInput:last-child {
+  margin-bottom: 0;
+}
+
+.skillsBuilder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.skillsBuilder .inputSkillAndDice {
+  flex-grow: 1;
+  min-width: 48%;
+  max-width: calc(50% - 20px);
+  padding: 0;
+  margin: 0 20px 0 0;
+}
+
+#doAnythingInput .r4sInput {
+  background-color: var(--greyM);
+}
+
+#doAnythingInput .subTitle {
+  color: var(--greyM);
+}
+
+#doAnythingInput .deleteBtn {
+  visibility: hidden;
+}
+
+#addSkillBuilder {
+  min-width: 49%;
+  max-width: calc(50% - 10px);
+  justify-content: space-between;
+  /* padding-left: 6px;
+  padding-right: 6px; */
+  /* font-weight: 700; */
+  font-size: 1.2rem;
+  color: white;
+}
+
+.submitButtons {
+  justify-content: flex-end;
+  padding-top: 0;
+}
+
+.submitButtons .contentBtn {
+  font-size: 1.5rem;
+  width: 15%;
+}
+
+.submitButtons .contentBtn:first-child {
+  border-radius: var(--leftOnly);
+  justify-content: flex-start;
+}
+
+.submitButtons .contentBtn:last-child {
+  border-radius: var(--rightOnly);
+  background-color: var(--greyD);
+  justify-content: flex-end;
+}

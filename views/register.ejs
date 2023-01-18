@@ -1,0 +1,47 @@
+<%- include("general-partials/header") %>
+<section id="loginSignup">
+    <div class="titleBlock">
+        <div>
+            <h1 class="title">Roll for Shoes</h1>
+            <h2 class="subTitle">Character Builder</h2>
+            <p class="textBody">Roll for shoes is a simplified d6 TTRPG system where your character grows organically based on choices and good luck. Read the rules <a href="https://rollforshoes.com/" target="_blank">Here</a></p>
+        </div>
+    </div>
+    <div class="contentBlock">
+        <div class="infoBlock loginBlock">
+            <form action="/register" method="post">
+                <h2 class="subTitle">Username</h2>
+                <input type="text" class="r4sInput" name="username" required>
+                <h2 class="subTitle">Email</h2>
+                <input type="email" class="r4sInput" name="email" required>
+                <h2 class="subTitle">Password</h2>
+                <input type="password" class="r4sInput" name="password" required>
+                <div class="loginButtons">
+                    <div class="r4sCheckAndName">
+                        <input type="checkbox" name="rememberMe">
+                        <label for="rememberMe">Remember Me</label>
+                    </div>
+                    <button class="contentBtn" type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="contentBlock">
+        <div class="infoBlock oAuthBlock">
+            <a class="oAuthLink" href="">
+                    <span class="fa-brands fa-google"></span>
+                    CONTINUE WITH GOOGLE
+            </a>
+        </div>
+    </div>
+    <div class="contentBlock">
+        <div class="loginBreak">
+            <h1 class="title">Already Have an Account?</h1>
+            <div class="infoBlock oAuthBlock">
+                <a class="oAuthLink" href="/login">LOG IN HERE</a>
+            </div>
+        </div>
+    </div>
+</section>
+<%- include("general-partials/scripts") %>
+<%- include("general-partials/footer") %>
