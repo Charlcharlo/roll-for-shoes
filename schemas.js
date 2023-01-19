@@ -18,7 +18,7 @@ const characterSchema = mongoose.Schema({
     xp: Number,
     new: {
         type: Boolean,
-        default: true
+        default: false
     }
 });
 

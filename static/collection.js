@@ -1,3 +1,8 @@
+$(".deleteBtn").on("click", function() {
+    const id = $(this).val();
+    $("#yesImSure").val(id);
+});
+
 $(".deleteChar").on("click", function () {
     const id = $(this).val();
     fetch("/characters/" + id, {
@@ -6,7 +11,7 @@ $(".deleteChar").on("click", function () {
           'Content-type': 'application/json',
         }
     });
-    $(this).closest(".charBlock").remove();
+    $("#char" + id).remove();
 });
 
 $("#newCharacter").click(function() {

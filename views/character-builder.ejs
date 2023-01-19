@@ -37,7 +37,7 @@
                 done
             </span>
         </button>
-        <button class="contentBtn" type="button" value="<%= character.new %>" id="cancelButton">
+        <button class="contentBtn" type="button" id="cancelGobetween" data-toggle="modal" data-target="#areYouSure">
             Cancel
             <span class="material-symbols-outlined">
                 close
@@ -45,6 +45,27 @@
         </button>
     </div>
 </form>
+
+<!-- Modals -->
+
+<div class="modal fade" id="areYouSure" tabindex="-1" role="dialog" aria-labelledby="addSkillModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content r4sModal">
+        <div class="modal-header">
+          <h5 class="title">Are you sure you want to cancel?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+            <p class="textBody">Changes you made will be lost.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="contentBtn hlButton" value="<%= character.new %>" id="cancelButton">Yes</button>
+            <button class="contentBtn" type="button" data-dismiss="modal">No</button>
+        </div>
+        </form>
+      </div>
+    </div>
+</div>
 
 <%- include("general-partials/scripts") %>
 <script src="/builder.js"></script>

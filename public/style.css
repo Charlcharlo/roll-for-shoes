@@ -451,6 +451,10 @@ a:hover {
   padding: 20px 16px 0;
 }
 
+.modal-body .textBody {
+  margin-left: 10px;
+}
+
 .modal-footer {
   border: none;
   padding-top: 0;

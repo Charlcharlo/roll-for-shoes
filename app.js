@@ -226,7 +226,7 @@ app.post("/:id/edit-character", (req, res) => {
 });
 
 app.post("/characters/new", (req, res) => {
-    const newChar = new Character({});
+    const newChar = new Character({new: true});
 
     newChar.save((err, character) => {
         if(!err) {
