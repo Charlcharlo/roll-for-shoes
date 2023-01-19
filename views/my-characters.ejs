@@ -2,7 +2,7 @@
 <%- include("general-partials/navbar") %>
 
 <div class="titleBlock">
-        <h1 class="title">My Characters</h1>
+        <h1 class="title">Characters</h1>
 </div>
 <div class="contentBlock" id="charCollection">
     <% characters.forEach(element => { %>
@@ -10,7 +10,7 @@
             <div class="charCollNameBlock">
                 <div>
                     <h1 class="title"><%= element.name %></h1>
-                    <h2 class="subTitle"><%= element.summary %></h2>
+                    <p class="summaryText"><%= element.summary %></p>
                 </div>
                 <button class="deleteBtn deleteChar" value="<%= element._id %>">
                     <span class="material-symbols-outlined">
@@ -27,7 +27,9 @@
                             </span>
                     </button>
                     <button class="contentBtn linkBtn">
-                        <a href="/character-builder/<%= element._id %>">Edit Character</a>
+                        <a href="/character-builder/<%= element._id %>">
+                            <span class="editText">Edit Character</span>
+                        </a>
                         <span class="material-symbols-outlined">
                             edit
                         </span>

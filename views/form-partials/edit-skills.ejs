@@ -4,12 +4,12 @@
         <div class="formDieContainer">
             <input class="r4sInput" id="editDieNum<%= element.cc %>" type="number" value="<%= element.dice %>" name="skillDice[]" required>
             <h2 class="subTitle">d6</h2>
+            <button class="deleteBtn deleteSkill">
+                <span class="material-symbols-outlined">
+                    delete
+                </span>
+            </button>
         </div>
-        <button class="deleteBtn deleteSkill">
-            <span class="material-symbols-outlined">
-                delete
-            </span>
-        </button>
     </div>
 <% }); %>
 <button class="contentBtn" type="button" id="addSkillBuilder">

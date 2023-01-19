@@ -61,6 +61,20 @@ a:hover {
   font-size: 1.2rem;
 }
 
+.summaryText {
+  color: var(--greyL);
+  font-family: var(--bodyFont);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.textBody {
+  text-align: justify;
+  color: white;
+  white-space: pre-wrap;
+}
+
 /* Navbar */
 
 .r4sNavbar {
@@ -119,15 +133,15 @@ a:hover {
   justify-content: center;
 }
 
-#loginSignup .textBody {
+#loginSignup .summaryText {
   text-align: center;
-  max-width: calc(40vw - 40px);
-  color: var(--greyL);
-  font-style: italic;
+  max-width: calc(50vw);
+  margin: 0 auto 16px;
 }
 
 #loginSignup .titleBlock .title {
   font-size: 4rem;
+  margin: 0 auto;
 }
 
 #loginSignup .titleBlock .subTitle {
@@ -137,7 +151,7 @@ a:hover {
 }
 
 .loginBlock {
-  min-width: 40vw;
+  width: 40vw;
   padding: 20px 20px 10px 10px !important;
 }
 
@@ -176,7 +190,8 @@ a:hover {
 }
 
 .oAuthBlock {
-  min-width: 40vw;
+  width: 40vw;
+  margin: 0 auto;
   padding: 16px !important;
   background-color: var(--purpleD) !important;
   border: 4px solid var(--purpleL);
@@ -410,12 +425,6 @@ a:hover {
   min-width: 100%;
 }
 
-.textBody {
-  text-align: justify;
-  color: white;
-  white-space: pre-wrap;
-}
-
 /* modals */
 
 .r4sModal {
@@ -471,6 +480,16 @@ a:hover {
   padding: 0 20px 0 0;
   margin-bottom: 20px;
   align-items: center;
+}
+
+.inputSkillAndDice .subTitle {
+  margin-bottom: 20px !important;
+  vertical-align: bottom;
+}
+
+.inputSkillAndDice .material-symbols-outlined {
+  margin-bottom: 20px;
+  vertical-align: text-top;
 }
 
 .r4sInput {
@@ -604,6 +623,10 @@ textarea.r4sInput {
   text-decoration: none;
 }
 
+.linkBtn .material-symbols-outlined {
+  vertical-align: center;
+}
+
 .deleteLink {
   display: flex;
   justify-content: center;
@@ -687,7 +710,7 @@ textarea.r4sInput {
   flex-grow: 1;
   min-width: 48%;
   max-width: calc(50% - 20px);
-  padding: 0;
+  padding: 0 20px 0 0;
   margin: 0 20px 0 0;
 }
 
@@ -705,7 +728,9 @@ textarea.r4sInput {
 
 #addSkillBuilder {
   min-width: 49%;
-  max-width: calc(50% - 10px);
+  max-width: calc(50% - 20px);
+  flex-grow: 1;
+  /* margin-left: 10px; */
   justify-content: space-between;
   /* padding-left: 6px;
   padding-right: 6px; */
@@ -735,9 +760,143 @@ textarea.r4sInput {
   justify-content: flex-end;
 }
 
-@media (width: 1030px) {
-  .charBlock {
+@media (max-width: 1030px) {
+  .charBlock,
+  .skillBlock,
+  .skillsBuilder .inputSkillAndDice {
     width: 100%;
     max-width: 100%;
+  }
+
+  #addSkillBuilder {
+    margin-bottom: 20px;
+    max-width: 100%;
+    flex-grow: 1;
+    margin: 0 0 20px 10px;
+  }
+
+  #editSkillsModal #addSkillBuilder {
+    margin-left: 0;
+  }
+
+  .submitButtons {
+    width: 100%;
+    margin: 0 20px 0 10px;
+  }
+
+  .submitButtons .contentBtn {
+    width: 50%;
+  }
+
+  #loginSignup .summaryText {
+    max-width: 100%;
+  }
+
+  .oAuthBlock,
+  .loginBlock {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  #sheetTitle {
+    flex-wrap: wrap;
+  }
+
+  #sheetTitle > div:last-child {
+    flex-grow: 1;
+  }
+
+  #charXp {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #charXp > div {
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .skillBlock .title {
+    font-size: 1rem;
+  }
+
+  .editText {
+    display: none;
+  }
+
+  .material-symbols-outlined {
+    margin-left: 0 !important;
+  }
+
+  .modal-body {
+    padding: 20px 6px;
+  }
+
+  .formDieContainer {
+    margin-left: 10px;
+  }
+
+  .formDieContainer .subTitle {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+
+  .inputSkillAndDice .deleteBtn {
+    margin-left: 5px !important;
+  }
+
+  .textBody {
+    text-align: left;
+  }
+
+  /* navbar */
+
+  .r4sNavbar {
+    flex-wrap: wrap;
+  }
+
+  .navItems a:first-child {
+    margin-left: 0;
+  }
+
+  /* Collection */
+
+  .charButtons .contentBtn:first-child .material-symbols-outlined {
+    margin-left: 20px !important;
+  }
+
+  .charButtons .contentBtn:last-child {
+    justify-content: center;
+  }
+
+  /* Edit Character */
+
+  #builderHeader .r4sNavbar,
+  #builderHeader .titleBlock {
+    padding: 10px calc(10% - 10px);
+  }
+
+  #characterBuilder .subTitle {
+    margin-left: 10px;
+  }
+
+  #characterBuilder > .contentBlock .r4sInput {
+    margin-left: 0;
+  }
+
+  #characterBuilder .inputSkillAndDice {
+    margin-right: 0;
+  }
+
+  /* Login */
+
+  .oAuthBlock,
+  .loginBlock {
+    width: 100%;
   }
 }

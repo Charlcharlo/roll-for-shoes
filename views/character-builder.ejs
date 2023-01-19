@@ -1,8 +1,10 @@
 <%- include("general-partials/header") %>
-<%- include("general-partials/navbar") %>
+<div id="builderHeader">
+    <%- include("general-partials/navbar") %>
 
-<div class="titleBlock">
-    <h1 class="title">Character Builder</h1>
+    <div class="titleBlock">
+        <h1 class="title">Character Builder</h1>
+    </div>
 </div>
 <form id="characterBuilder" action="/<%= character._id %>/edit-character" method="post">
     <div class="contentBlock">

@@ -11,4 +11,9 @@ $(".deleteChar").on("click", function () {
 
 $("#newCharacter").click(function() {
     $(this).find("form").submit();
+});
+
+$(".linkBtn").on("click", function() {
+    const link = $(this).find("a").prop("href");
+    window.location.href = link;
 })

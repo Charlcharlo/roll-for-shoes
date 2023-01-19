@@ -6,7 +6,7 @@
     <div class="titleBlock" id="sheetTitle">
         <div  id="charName">
             <h1 class="title"><%= character.name %></h1>
-            <h2 class="subTitle"><%= character.summary %></h2>
+            <p class="summaryText"><%= character.summary %></p>
         </div>
         <div>
             <div class="infoBlock" id="charXp">
@@ -40,7 +40,7 @@
                 New Skill
             </button>
             <button class="contentBtn" type="button" data-toggle="modal" data-target="#editSkillsModal">
-                Edit Skills
+                <span class="editText">Edit Skills</span>
                 <span class="material-symbols-outlined">
                     edit
                 </span>
@@ -82,7 +82,7 @@
         </div>
         <div>
             <button class="contentBtn" type="button" data-toggle="modal" data-target="#editInfoModal">
-                Edit Info
+                <span class="editText">Edit Info</span>
                 <span class="material-symbols-outlined">
                     edit
                 </span>
