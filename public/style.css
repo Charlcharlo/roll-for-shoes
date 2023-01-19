@@ -734,3 +734,10 @@ textarea.r4sInput {
   background-color: var(--greyD);
   justify-content: flex-end;
 }
+
+@media (width: 1030px) {
+  .charBlock {
+    width: 100%;
+    max-width: 100%;
+  }
+}
