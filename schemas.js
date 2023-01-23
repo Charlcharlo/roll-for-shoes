@@ -1,33 +1,36 @@
 const mongoose = require("mongoose");
 const passport = require("passport");
-const passportMongoose = require("passport-local-mongoose")
+const passportMongoose = require("passport-local-mongoose");
 
-const skillSchema = mongoose.Schema({
-    name: String,
-    cc: String,
-    dice: Number
-});
+exports.Skill = class {
+    constructor(name, cc, dice) {
+        this.name = name;
+        this.cc = cc;
+        this.dice = dice;
+    }
+};
 
-exports.skill = skillSchema;
-
-const characterSchema = mongoose.Schema({
+exports.character = mongoose.Schema({
     name: String,
     summary: String,    
     backstory: String,
-    skills: [skillSchema],
-    xp: Number,
+    skills: Array,
+    xp: {
+        type: Number,
+        default: 0
+    },
     new: {
         type: Boolean,
         default: false
-    }
+    },
+    user: String
 });
-
-exports.character = characterSchema;
 
 const userSchema = mongoose.Schema({
     username: String,
     email: String,
-    password: String
+    password: String,
+    characters: Array
 });
 
 userSchema.plugin(passportMongoose, {usernameField: "username"});

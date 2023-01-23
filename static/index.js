@@ -1,5 +1,5 @@
 $(".deleteSkill").on("click", function () {
-    $(this).parent().remove();
+    $(this).closest(".inputSkillAndDice").remove();
 });
 
 $("#addSkillBuilder").on("click", function() {

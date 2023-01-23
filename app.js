@@ -35,18 +35,8 @@ app.use(passport.session());
 mongoose.set("strictQuery", true);
 mongoose.connect("mongodb://localhost:25420/roll4shoes");
 
-const Skill = mongoose.model("Skill", schemas.skill);
 const Character = mongoose.model("Character", schemas.character);
-
-const userSchema = mongoose.Schema({
-    username: String,
-    email: String,
-    password: String
-});
-
-userSchema.plugin(passportMongoose, {usernameField: "username"});
-
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", schemas.user);
 
 // Passport
 
@@ -74,9 +64,10 @@ app.get("/register", (req, res) => {
 
 app.get("/my-characters", (req, res) => {
     if(req.isAuthenticated()) {
-        Character.find((err, characters) => {
+        const charIds = req.user.characters;
+        Character.find({_id: {$in: charIds}}, (err, characters) => {
             if(!err) {
-                res.render("my-characters", {characters: characters});
+                res.render("my-characters", {user: req.user, characters: characters});
             }
         });
     } else {
@@ -150,11 +141,11 @@ app.post("/:id/new-skill", (req, res) => {
     const id = req.params.id;
     Character.findById(id, (err, character) => {
         if(!err) {
-            const newSkill = new Skill({
-                name: req.body.skillName,
-                cc: _.camelCase(req.body.skillName),
-                dice: req.body.skillDice
-            });
+            const name = req.body.skillName;
+            const cc = _.camelCase(name);
+            const dice = req.body.skillDice;
+
+            const newSkill = new schemas.Skill(name, cc, dice);
             character.skills.push(newSkill);
             character.save((err) => {
                 if(!err) {
@@ -171,11 +162,12 @@ function prepareSkills(body) {
         const newNames = body.skillName;
         const newDice = body.skillDice;
         for (let index = 0; index < newNames.length; index++) {
-            const newSkill = new Skill({
-                name: newNames[index],
-                cc: _.camelCase(newNames[index]),
-                dice: newDice[index]
-            });        
+            const name = newNames[index];
+            const cc = _.camelCase(name);
+            const dice = newDice[index];
+
+            const newSkill = new schemas.Skill(name, cc, dice);
+
             skills.push(newSkill);
         };
     }
@@ -226,44 +218,27 @@ app.post("/:id/edit-character", (req, res) => {
 });
 
 app.post("/characters/new", (req, res) => {
-    const newChar = new Character({new: true});
+    const newChar = new Character({
+        new: true,
+        user: req.user._id
+    });
 
     newChar.save((err, character) => {
         if(!err) {
-            res.redirect("/character-builder/" + character._id);
+            User.findByIdAndUpdate(req.user._id, 
+                {$push: {characters: character._id}}, 
+                (err) => {
+                    if(!err) {
+                    res.redirect("/character-builder/" + character._id);
+                    }
+                })
         } else {
             res.send(err);
         }
     });
 });
 
-// API Routing /////////////////////////////////////////////////////
-
-app.route("/characters")
-    .get((req, res) => {
-        Character.find((err, result) => {
-            if(!err) {
-            res.send(result);
-            }
-        });
-    })
-
-    .post((req, res) => {
-
-        const newChar = new Character({
-            name: req.body.name,
-            summary: req.body.summary,
-            xp: req.body.xp
-        });
-    
-        newChar.save((err) => {
-            if(!err) {
-                res.send("Successfully created a new character");
-            } else {
-                res.send(err);
-            }
-        });
-    });
+// Fetch Routing /////////////////////////////////////////////////////
 
 app.route("/characters/:id")
     .get((req, res) => {
@@ -274,18 +249,6 @@ app.route("/characters/:id")
                 res.send(err);
             }
         });
-    })
-    .put((req, res) => {
-        Character.findByIdAndUpdate(req.params.id, 
-            req.body,
-            {overwrite: true},
-            (err) => {
-                if(!err) {
-                    res.send("Update succesful");
-                } else {
-                    res.send(err);
-                }
-            });
     })
     .patch((req, res) => {
         Character.findByIdAndUpdate(req.params.id,
@@ -298,13 +261,19 @@ app.route("/characters/:id")
                 }
             });
     }).delete((req, res) => {
-        Character.findByIdAndRemove(req.params.id, (err) => {
+        Character.findByIdAndRemove(req.params.id, (err, character) => {
             if(!err) {
-                res.send("Delete successful");
+                User.findByIdAndUpdate(character.user, 
+                    {$pull: {characters: character._id}},
+                    (err) => {
+                        if(!err) {
+                            res.send("Delete successful");
+                        }
+                });
             } else {
                 res.send(err);
             }
-        })
+        });
     });
 
 app.listen(3000, () => {

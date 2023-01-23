@@ -332,6 +332,9 @@ a:hover {
   border-left: none;
   padding: 16px;
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .skillBlock > div:last-child:hover {
@@ -749,6 +752,7 @@ textarea.r4sInput {
 }
 
 .submitButtons .contentBtn {
+  justify-content: space-between !important;
   font-size: 1.5rem;
   width: 15%;
 }
