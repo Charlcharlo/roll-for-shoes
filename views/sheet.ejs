@@ -74,6 +74,22 @@
         <% }); %>
     </div>
 
+    <!-- Items -->
+    <div class="contentBlock buttonBlock">
+        <h2 class="subTitle">Items</h2>
+    </div>
+    
+    <div class="contentBlock">
+        <% character.items.forEach(item => { %>
+            <div class="infoBlock itemSheet">
+                <div>
+                    <h1 class="title"><%= item.name %></h1>
+                    <p class="textBody"><%= item.description %></p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
     <!-- Backstory -->
 
     <div class="contentBlock buttonBlock" id="backstoryButtons">

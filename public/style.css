@@ -306,7 +306,8 @@ a:hover {
   flex-wrap: wrap;
 }
 
-.skillBlock {
+.skillBlock,
+.itemSheet {
   flex-grow: 1;
   width: calc(50% - 10px);
   max-width: calc(50% - 10px);
@@ -458,6 +459,10 @@ a:hover {
   margin-left: 10px;
 }
 
+.modal-body .inputSkillAndDice {
+  padding-right: 20px;
+}
+
 .modal-footer {
   border: none;
   padding-top: 0;
@@ -483,7 +488,9 @@ a:hover {
 /* forms */
 
 .inputSkillAndDice {
+  flex-grow: 1;
   display: flex;
+  width: 100%;
   padding: 0 20px 0 0;
   margin-bottom: 20px;
   align-items: center;
@@ -555,6 +562,18 @@ textarea.r4sInput {
 
 .infoForm .subTitle {
   margin-bottom: 10px;
+}
+
+.itemBlock {
+  margin-bottom: 20px;
+}
+
+.itemBlock .inputSkillAndDice {
+  margin-bottom: 10px;
+}
+
+.itemBlock .inputSkillAndDice:last-child {
+  padding: 0;
 }
 
 /* Character Collection */
@@ -713,13 +732,13 @@ textarea.r4sInput {
   align-items: flex-start;
 }
 
-.skillsBuilder .inputSkillAndDice {
+/* .skillsBuilder .inputSkillAndDice {
   flex-grow: 1;
   min-width: 48%;
   max-width: calc(50% - 20px);
   padding: 0 20px 0 0;
   margin: 0 20px 0 0;
-}
+} */
 
 #doAnythingInput .r4sInput {
   background-color: var(--greyM);
@@ -734,15 +753,29 @@ textarea.r4sInput {
 }
 
 #addSkillBuilder {
-  min-width: 49%;
-  max-width: calc(50% - 20px);
+  width: 100%;
   flex-grow: 1;
-  /* margin-left: 10px; */
   justify-content: space-between;
-  /* padding-left: 6px;
-  padding-right: 6px; */
-  /* font-weight: 700; */
-  font-size: 1.2rem;
+  color: white;
+}
+
+#itemsBuilder .formDieContainer {
+  align-items: center;
+}
+
+#itemsBuilder .infoForm .r4sInput {
+  margin-bottom: 0;
+}
+
+#itemsBuilder .inputSkillAndDice .subTitle {
+  margin: 0 10px 0 0;
+  /* vertical-align: baseline; */
+}
+
+#addItemBuilder {
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
   color: white;
 }
 
@@ -754,7 +787,7 @@ textarea.r4sInput {
 .submitButtons .contentBtn {
   justify-content: space-between !important;
   font-size: 1.5rem;
-  width: 15%;
+  min-width: 15%;
 }
 
 .submitButtons .contentBtn:first-child {
@@ -780,7 +813,6 @@ textarea.r4sInput {
     margin-bottom: 20px;
     max-width: 100%;
     flex-grow: 1;
-    margin: 0 0 20px 10px;
   }
 
   #editSkillsModal #addSkillBuilder {
@@ -789,7 +821,6 @@ textarea.r4sInput {
 
   .submitButtons {
     width: 100%;
-    margin: 0 20px 0 10px;
   }
 
   .submitButtons .contentBtn {

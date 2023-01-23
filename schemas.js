@@ -10,11 +10,20 @@ exports.Skill = class {
     }
 };
 
+exports.Item = class {
+    constructor(name, description, qty) {
+        this.name = name;
+        this.description = description;
+        this.qty = qty;
+    }
+}
+
 exports.character = mongoose.Schema({
     name: String,
     summary: String,    
     backstory: String,
     skills: Array,
+    items: Array,
     xp: {
         type: Number,
         default: 0
