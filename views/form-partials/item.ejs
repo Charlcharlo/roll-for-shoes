@@ -1,7 +1,18 @@
-<div class="inputSkillAndDice">
-    <input class="r4sInput" type="text" name="itemName" placeholder="Item Name" required>
-    <input class="r4sInput" type="text" name="itemDesc placeholder="Description" maxlength="120">
-    <div class="formDieContainer">
-        <input class="r4sInput" type="number" value="1" name="itemQty" required>
+<div class="itemBlock">
+    <div class="inputSkillAndDice">
+        <input class="r4sInput" type="text" name="itemName[]" placeholder="Item Name" required>
+        <div class="formDieContainer">
+            <h2 class="subTitle">x</h2>
+            <input class="r4sInput" type="number" value="1" name="itemQty[]" required>
+        </div>
+    </div>
+    <div class="inputSkillAndDice">
+        <input class="r4sInput" type="text" name="itemDesc[]" placeholder="Description" maxlength="120">
     </div>
 </div>
+<button class="contentBtn addItemBuilder" type="button">
+    Add Item
+    <span class="material-symbols-outlined">
+        add_circle
+    </span>
+</button>

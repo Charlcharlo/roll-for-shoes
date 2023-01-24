@@ -172,11 +172,10 @@ function prepareSkills(body) {
         };
     }
     return skills;
-}
+};
 
 app.post("/:id/edit-skills", (req, res) => {
     const id = req.params.id;
-    
     const skills = prepareSkills(req.body);
 
     Character.findByIdAndUpdate(id, 
@@ -187,6 +186,54 @@ app.post("/:id/edit-skills", (req, res) => {
         }
     });
 });
+
+function prepareItems(body) {
+    const items = [];
+    if(body.itemName) {
+        const newNames = body.itemName;
+        const newDesc = body.itemDesc;
+        const newQty = body.itemQty;
+        console.log(newQty)
+
+        for (let index = 0; index < newNames.length; index++) {
+            const name = newNames[index];
+            const desc = newDesc[index];
+            const qty = newQty[index];
+    
+            const newItem = new schemas.Item(name, desc, qty);
+
+            items.push(newItem);
+        };
+    }
+    return items;
+};
+
+app.post("/:id/new-item", (req, res) => {
+    const id = req.params.id;
+    const newItems = prepareItems(req.body);
+
+    Character.findById(id, (err, character) => {
+        if(!err) {
+            const items = character.items.concat(newItems);
+            character.items = items;
+            character.save();
+            res.redirect("/sheet/" + id);
+        }
+    })
+});
+
+app.post("/:id/edit-items", (req, res) => {
+    const id = req.params.id;
+    const items = prepareItems(req.body);
+
+    Character.findByIdAndUpdate(id, 
+        {$set: {items: items}},
+        (err) => {
+        if(!err) {
+            res.redirect("/sheet/" + id);
+        }
+    });
+})
 
 app.post("/:id/edit-info", (req, res) => {
     const id = req.params.id;
@@ -205,9 +252,10 @@ app.post("/:id/edit-character", (req, res) => {
     const id = req.params.id;
 
     const skills = prepareSkills(req.body);
+    const items = prepareItems(req.body);
 
     Character.findByIdAndUpdate(id,
-        {$set: req.body, skills:skills, new: false}, 
+        {$set: req.body, skills: skills, items: items, new: false},
         (err) => {
             if(!err) {
                 res.redirect("/sheet/" + id);

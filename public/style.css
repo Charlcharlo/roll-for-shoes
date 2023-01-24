@@ -13,6 +13,8 @@
   --leftOnly: 10px 0 0 10px;
   --rightOnly: 0 10px 10px 0;
   --bottonOnly: 0 0 10px 10px;
+
+  --purpBorder: 4px solid var(--purpleL);
 }
 
 body {
@@ -52,7 +54,7 @@ a:hover {
 .title {
   color: white;
   font-family: var(--titleFont);
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 
 .subTitle {
@@ -73,6 +75,125 @@ a:hover {
   text-align: justify;
   color: white;
   white-space: pre-wrap;
+}
+
+/* Blocks */
+
+.titleBlock {
+  background-color: var(--purpleL);
+  padding: 20px 10%;
+  display: flex;
+}
+
+.titleBlock .title {
+  font-size: 3rem;
+}
+
+.titleBlock .subTitle {
+  font-style: italic;
+}
+
+.contentBlock {
+  padding: 20px calc(10% - 20px) 0;
+  display: flex;
+}
+
+.collectionSection {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.infoBlock {
+  padding: 20px;
+  background-color: var(--purpleL);
+  border-radius: 10px;
+}
+
+.complexBlock {
+  flex-grow: 1;
+  width: 49%;
+  max-width: calc(50% - 10px);
+  margin-bottom: 20px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.complexBlock > div:last-child {
+  border-radius: var(--rightOnly);
+  border: var(--purpBorder);
+  background-color: var(--purpleD);
+  padding: 16px;
+  height: 100%;
+}
+
+.infoBlock .subTitle {
+  font-size: 1rem;
+}
+
+/* Buttons */
+
+.contentBtn {
+  background-color: var(--purpleD);
+  border: var(--purpBorder);
+  padding: 5px 16px;
+  border-radius: 10px;
+
+  font-family: var(--bodyFont);
+  font-size: 1.2rem;
+  color: var(--greyL);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.hlButton {
+  background-color: var(--purpleL);
+  color: white;
+}
+
+.contentBtn .material-symbols-outlined {
+  margin: 0 0 0 16px;
+}
+
+.contentBtn:hover {
+  background-color: var(--highlight) !important;
+  border-color: var(--highlight);
+  color: white !important;
+}
+
+.buttonBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.buttonBlock .title {
+  color: var(--greyL);
+  margin-left: 20px;
+}
+
+.buttonBlock .contentBtn {
+  min-width: 12vw;
+}
+
+.pillCasing {
+  display: flex;
+}
+
+.pillCasing .contentBtn:first-child {
+  border-radius: var(--leftOnly);
+}
+
+.pillCasing .contentBtn:last-child {
+  border-radius: var(--rightOnly);
+}
+
+.pillCasing .contentBtn:first-child .material-symbols-outlined {
+  margin: 0 16px 0 0;
 }
 
 /* Navbar */
@@ -135,7 +256,7 @@ a:hover {
 
 #loginSignup .summaryText {
   text-align: center;
-  max-width: calc(50vw);
+  max-width: 50vw;
   margin: 0 auto 16px;
 }
 
@@ -194,7 +315,7 @@ a:hover {
   margin: 0 auto;
   padding: 16px !important;
   background-color: var(--purpleD) !important;
-  border: 4px solid var(--purpleL);
+  border: var(--purpBorder);
 }
 
 .oAuthBlock:hover {
@@ -221,46 +342,15 @@ a:hover {
 }
 
 .loginBreak .title {
-  font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
 /* Character Sheet */
 
-.contentBlock {
-  padding: 20px calc(10% - 20px) 0;
-  display: flex;
-}
-
-.infoBlock {
-  padding: 20px;
-  background-color: var(--purpleL);
-  border-radius: 10px;
-}
-
-.infoBlock .title {
-  font-size: 1.5rem;
-}
-
-.infoBlock .subTitle {
-  font-size: 1rem;
-}
-
 /* Name & XP */
-
-.titleBlock {
-  background-color: var(--purpleL);
-  padding: 20px 10%;
-  display: flex;
-  /* flex-wrap: wrap; */
-}
 
 #sheetTitle {
   padding: 0 calc(10% - 20px) 20px;
-}
-
-.titleBlock .subTitle {
-  font-style: italic;
 }
 
 #charName {
@@ -274,6 +364,10 @@ a:hover {
   padding: 0;
   float: right;
   margin: 20px 0 0;
+}
+
+#charXp .title {
+  font-size: 1.5rem;
 }
 
 #charXp > div {
@@ -300,24 +394,6 @@ a:hover {
 
 /* Skills */
 
-#skillsSection,
-#charCollection {
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.skillBlock,
-.itemSheet {
-  flex-grow: 1;
-  width: calc(50% - 10px);
-  max-width: calc(50% - 10px);
-  margin-bottom: 20px;
-  padding: 0;
-
-  display: flex;
-  align-items: center;
-}
-
 .skillBlock div {
   padding: 20px;
 }
@@ -327,13 +403,8 @@ a:hover {
 }
 
 .skillBlock > div:last-child {
-  background-color: var(--purpleD);
-  border-radius: var(--rightOnly);
-  border: 4px solid var(--purpleL);
-  border-left: none;
-  padding: 16px;
   cursor: pointer;
-  height: 100%;
+  border-left: none;
   display: flex;
   align-items: center;
 }
@@ -345,7 +416,7 @@ a:hover {
 
 .utilityBlock {
   background-color: var(--purpleD);
-  border: 4px solid var(--purpleL);
+  border: var(--purpBorder);
 }
 
 .utilityBlock > div {
@@ -359,71 +430,30 @@ a:hover {
   border: none;
 }
 
-/* Buttons */
+/* Items */
 
-.buttonBlock {
-  display: flex;
+.itemSheet {
   justify-content: space-between;
-  align-items: flex-end;
 }
 
-.buttonBlock div:last-child {
-  display: flex;
+.itemSheet .textBody {
+  margin: 0;
 }
 
-.buttonBlock .title {
-  font-size: 1.5rem;
-  color: var(--greyL);
-  margin-left: 20px;
+.itemSheet div {
+  padding: 20px;
 }
 
-#skillButtons .contentBtn:first-child {
-  border-radius: var(--leftOnly);
+.itemSheet div:last-child {
+  text-align: center;
 }
 
-#skillButtons .contentBtn:last-child {
-  border-radius: var(--rightOnly);
-}
-
-#skillButtons .contentBtn:first-child .material-symbols-outlined {
-  margin: 0 16px 0 0;
-}
-
-.contentBtn {
-  background-color: var(--purpleD);
-  border: 4px solid var(--purpleL);
-  padding: 5px 16px;
-  border-radius: 10px;
-
-  font-family: var(--bodyFont);
-  font-size: 1.2rem;
-  color: var(--greyL);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.hlButton {
-  background-color: var(--purpleL);
-  color: white;
-}
-
-.contentBtn .material-symbols-outlined {
-  margin: 0 0 0 16px;
-}
-
-.contentBtn:hover {
-  background-color: var(--highlight) !important;
-  border-color: var(--highlight);
-  color: white !important;
+.itemSheet .summaryText {
+  font-size: 1rem;
+  margin: 0;
 }
 
 /* Backstory */
-
-#backstoryButtons {
-  padding-top: 0;
-}
 
 #backstoryContent {
   min-width: 100%;
@@ -433,13 +463,9 @@ a:hover {
 
 .r4sModal {
   background-color: var(--purpleD);
-  border: 4px solid var(--purpleL);
+  border: var(--purpBorder);
   color: white;
   /* width: 60vw; */
-}
-
-.r4sModal .title {
-  font-size: 1.5rem;
 }
 
 .modal-header {
@@ -579,19 +605,13 @@ textarea.r4sInput {
 /* Character Collection */
 
 .charBlock {
-  max-width: calc(50% - 10px);
-  width: 49%;
-  flex-grow: 1;
-  margin-bottom: 20px;
-  padding: 0;
-
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .charBlock > div {
   padding: 20px;
+  width: 100%;
 }
 
 .charBlock .subTitle {
@@ -621,9 +641,10 @@ textarea.r4sInput {
 }
 
 .charBlockBottom {
-  background-color: var(--purpleD);
-  border-radius: var(--bottonOnly);
-  min-height: 100px;
+  border-radius: var(--bottonOnly) !important;
+  height: unset !important;
+  padding: 0 !important;
+  border: none !important;
 }
 
 .charButtons {
@@ -637,16 +658,24 @@ textarea.r4sInput {
 }
 
 .charButtons .contentBtn:first-child {
-  border-radius: var(--leftOnly);
+  border-radius: 0 0 0 10px;
+  border-right: 2px solid var(--purpleL);
+  padding-top: 14px;
 }
 
 .charButtons .contentBtn:last-child {
-  border-radius: var(--rightOnly);
+  border-radius: 0 0 10px 0;
+  border-left: 2px solid var(--purpleL);
 }
 
 .charButtons .contentBtn a {
   color: white;
   text-decoration: none;
+}
+
+.charButtons .contentBtn:last-child a,
+.charButtons .contentBtn:last-child span {
+  color: var(--greyL);
 }
 
 .linkBtn .material-symbols-outlined {
@@ -659,7 +688,6 @@ textarea.r4sInput {
   align-items: center;
   color: var(--greyL);
   text-decoration: none;
-  /* padding: 0 !important; */
 }
 
 .r4sLink {
@@ -676,7 +704,7 @@ textarea.r4sInput {
 #newCharacter {
   min-height: 250px;
   background-color: var(--purpleD);
-  border: 4px solid var(--purpleL);
+  border: var(--purpBorder);
 
   justify-content: center;
   align-items: center;
@@ -732,14 +760,6 @@ textarea.r4sInput {
   align-items: flex-start;
 }
 
-/* .skillsBuilder .inputSkillAndDice {
-  flex-grow: 1;
-  min-width: 48%;
-  max-width: calc(50% - 20px);
-  padding: 0 20px 0 0;
-  margin: 0 20px 0 0;
-} */
-
 #doAnythingInput .r4sInput {
   background-color: var(--greyM);
 }
@@ -767,12 +787,12 @@ textarea.r4sInput {
   margin-bottom: 0;
 }
 
-#itemsBuilder .inputSkillAndDice .subTitle {
+.itemBlock .subTitle {
   margin: 0 10px 0 0;
   /* vertical-align: baseline; */
 }
 
-#addItemBuilder {
+.addItemBuilder {
   width: 100%;
   justify-content: space-between;
   margin-bottom: 20px;

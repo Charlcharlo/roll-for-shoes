@@ -4,9 +4,9 @@
 <div class="titleBlock">
         <h1 class="title">Characters</h1>
 </div>
-<div class="contentBlock" id="charCollection">
+<div class="contentBlock collectionSection" id="charCollection">
     <% characters.forEach(element => { %>
-        <div class="infoBlock charBlock" id="char<%= element._id %>">
+        <div class="infoBlock charBlock complexBlock" id="char<%= element._id %>">
             <div class="charCollNameBlock">
                 <div>
                     <h1 class="title"><%= element.name %></h1>
@@ -19,12 +19,12 @@
                 </button>
             </div>
             <div class="charBlockBottom">
-                <div class="charButtons">
-                    <button class="contentBtn hlButton linkBtn">
+                <div class="charButtons pillCasing">
+                    <button class="contentBtn linkBtn">
+                        <span class="material-symbols-outlined">
+                            visibility
+                        </span>
                         <a href="/sheet/<%= element._id %>" class="link">View Sheet</a>
-                            <span class="material-symbols-outlined">
-                                visibility
-                            </span>
                     </button>
                     <button class="contentBtn linkBtn">
                         <a href="/character-builder/<%= element._id %>">
@@ -38,7 +38,7 @@
             </div>
         </div>
     <% }); %>
-    <div class="infoBlock charBlock" id="newCharacter">
+    <div class="infoBlock complexBlock charBlock" id="newCharacter">
         <form action="/characters/new" method="post"></form>
         <span class="material-symbols-outlined">
             add_circle

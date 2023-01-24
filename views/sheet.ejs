@@ -32,10 +32,10 @@
         <div>
             <h1 class="title">Skills</h1>
         </div>
-        <div>
+        <div class="pillCasing">
             <button class="contentBtn hlButton" id="newSkill" type="button" data-toggle="modal" data-target="#newSkillModal">
                 <span class="material-symbols-outlined">
-                    add_circle
+                    add
                 </span>
                 New Skill
             </button>
@@ -48,8 +48,8 @@
         </div>
     </div>
 
-    <div class="contentBlock" id="skillsSection">
-        <div class="infoBlock skillBlock utilityBlock" id="doAnything">
+    <div class="contentBlock collectionSection" id="skillsSection">
+        <div class="infoBlock complexBlock utilityBlock" id="doAnything">
             <div>
                 <h1 class="title">Do Anything</h1>
             </div>
@@ -58,7 +58,7 @@
             </div>
         </div>
         <% character.skills.forEach(skill => { %>
-            <div class="infoBlock skillBlock">
+            <div class="infoBlock complexBlock skillBlock">
                 <div>
                     <h1 class="title"><%= skill.name %></h1>
                 </div>
@@ -75,16 +75,35 @@
     </div>
 
     <!-- Items -->
+
     <div class="contentBlock buttonBlock">
-        <h2 class="subTitle">Items</h2>
+        <h2 class="title">Items</h2>
+        <div class="pillCasing">
+            <button class="contentBtn hlButton" type="button" data-toggle="modal" data-target="#newItemModal">
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+                Add Items
+            </button>
+            <button class="contentBtn" type="button" data-toggle="modal" data-target="#editItemsModal">
+                Edit Items
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+            </button>
+        </div>
     </div>
-    
-    <div class="contentBlock">
+
+    <div class="contentBlock collectionSection">
         <% character.items.forEach(item => { %>
-            <div class="infoBlock itemSheet">
+            <div class="infoBlock complexBlock itemSheet">
                 <div>
                     <h1 class="title"><%= item.name %></h1>
-                    <p class="textBody"><%= item.description %></p>
+                    <p class="summaryText"><%= item.description %></p>
+                </div>
+                <div>
+                    <h1 class="title"><%= item.qty %></h1>
+                    <h2 class="subTitle">QTY</h2>
                 </div>
             </div>
         <% }); %>
@@ -156,6 +175,53 @@
           </div>
         </div>
     </div>
+
+    <!-- Items -->
+
+    <div class="modal fade" id="newItemModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content r4sModal">
+            <div class="modal-header">
+              <h5 class="title">New Skill</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <form action="/<%= character._id %>/new-item" method="post">
+                <div class="modal-body">
+                    <%- include("form-partials/item") %> 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="contentBtn hlButton">
+                        Add
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+                    </button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editItemsModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content r4sModal">
+            <div class="modal-header">
+              <h5 class="title">Edit Skills</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <form action="/<%= character._id %>/edit-items" method="post">
+                <div class="modal-body">
+                    <%- include("form-partials/edit-items") %> 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="contentBtn hlButton">Save Changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- Info -->
     
     <div class="modal fade" id="editInfoModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
