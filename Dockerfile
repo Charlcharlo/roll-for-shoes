@@ -11,3 +11,7 @@ WORKDIR /app
 COPY ./ /app
 
 CMD ["npm", "start"]
+
+ENV PORT 3000
+
+EXPOSE 3000
