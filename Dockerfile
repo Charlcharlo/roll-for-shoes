@@ -10,4 +10,4 @@ WORKDIR /app
 # Copy the application files into the working directory
 COPY . /app
 
-CMD node app.js
+CMD ["npm", "start"]
