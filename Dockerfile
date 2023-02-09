@@ -2,13 +2,13 @@
 
 FROM node:lts-bullseye-slim
 
-RUN npm install
-
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy the application files into the working directory
 COPY ./ /app
+
+RUN npm install
 
 CMD ["npm", "start"]
 
