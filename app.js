@@ -50,7 +50,7 @@ passport.use(new GoogleStrategy({
 // mongoose
 
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb+srv://LineGoon:vXFAt0Gep0JKB24x@roll-for-shoes.8s4xzsv.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://LineGoon:" + process.env.MONGO_PW + "@roll-for-shoes.8s4xzsv.mongodb.net/?retryWrites=true&w=majority");
 
 const Character = mongoose.model("Character", schemas.character);
 const User = mongoose.model("User", schemas.user);
