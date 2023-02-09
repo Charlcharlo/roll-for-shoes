@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config();
+const dotenv = require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -8,12 +8,14 @@ const encrypt = require("mongoose-encryption");
 const session = require("express-session");
 const passport = require("passport");
 const passportMongoose = require("passport-local-mongoose");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const findOrCreate = require("mongoose-findorcreate");
 
 const schemas = require(__dirname + "/schemas.js");
 
 const app = express();
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -24,16 +26,32 @@ app.use(express.static("static"));
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/roll-for-shoes"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+      console.log(profile);
+    User.findOrCreate({ googleId: profile.id, username: profile.name.givenName }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
 // mongoose
 
-mongoose.set("strictQuery", true);
-mongoose.connect("mongodb://localhost:25420/roll4shoes");
+mongoose.set("strictQuery", false);
+mongoose.connect("mongodb+srv://LineGoon:vXFAt0Gep0JKB24x@roll-for-shoes.8s4xzsv.mongodb.net/?retryWrites=true&w=majority");
 
 const Character = mongoose.model("Character", schemas.character);
 const User = mongoose.model("User", schemas.user);
@@ -41,26 +59,62 @@ const User = mongoose.model("User", schemas.user);
 // Passport
 
 passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
+passport.serializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, {
+          _id: user._id,
+          username: user.username,
+          email: user.email,
+          characters: user.characters
+      });
+    });
+  });
+  
+passport.deserializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, user);
+    });
+  });
 
 //Get Routing//////////////////////////////////////////////////////
 
 app.get("/", (req, res) => {
     if(req.isAuthenticated()) {
-        res.redirect("/my-characters");
+        res.redirect("/my-characters", {user: req.user});
     } else {
         res.redirect("/login");
     }
 });
 
 app.get("/login", (req, res) => {
-    res.render("login");
-})
+    res.render("login", {retry: ""});
+});
+
+app.get("/login/retry", (req, res) => {
+    res.render("login", {retry: "retry"});
+});
+
+app.get("/logout", (req, res) => {
+    req.logout((err) => {
+        if(!err) {
+            res.redirect("/");
+        }
+    });
+});
 
 app.get("/register", (req, res) => {
     res.render("register");
-})
+});
+
+app.get("/auth/google",
+  passport.authenticate("google", { scope: ["profile"] }));
+
+app.get("/auth/google/roll-for-shoes", 
+    passport.authenticate("google", { failureRedirect: "/login" }),
+    function(req, res) {
+        res.redirect("/my-characters");
+  });
 
 app.get("/my-characters", (req, res) => {
     if(req.isAuthenticated()) {
@@ -79,7 +133,7 @@ app.get("/character-builder/:id", (req, res) => {
     if(req.isAuthenticated()) {
         Character.findById(req.params.id, (err, character) => {
             if(!err) {
-                res.render("character-builder", {character:character});
+                res.render("character-builder", {user: req.user, character:character});
             }
         });
     } else {
@@ -91,7 +145,7 @@ app.get("/sheet/:id",(req, res) => {
     if(req.isAuthenticated()) {
         Character.findById(req.params.id, (err, result) => {
             if(!err) {
-                res.render("sheet", {character: result});
+                res.render("sheet", {user: req.user, character: result});
             }
         });
     } else {
@@ -128,8 +182,8 @@ app.post("/login", (req, res) => {
             console.log(err);
         } 
         else {
-            passport.authenticate("local")(req, res, function() {
-            res.redirect("/my-characters");
+            passport.authenticate("local", {failureRedirect: "/login/retry"})(req, res, function() {   
+                res.redirect("/my-characters");
             });
         }
     });
@@ -323,6 +377,19 @@ app.route("/characters/:id")
             }
         });
     });
+
+app.patch("/user", (req, res) => {
+    // if(req.isAuthenticated) {
+        User.findByIdAndUpdate(req.user._id, req.body, (err) => {
+            if(!err) {
+                passport.authenticate("local");
+                res.send("Update successful");
+            } else {
+                res.send(err);
+            }
+        });
+    // }
+});
 
 app.listen(3000, () => {
     console.log("Rolled for Server successfully");

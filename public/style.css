@@ -161,7 +161,7 @@ a:hover {
 
 .contentBtn:hover {
   background-color: var(--highlight) !important;
-  border-color: var(--highlight);
+  border-color: var(--highlight) !important;
   color: white !important;
 }
 
@@ -198,12 +198,20 @@ a:hover {
 
 /* Navbar */
 
+#infoLink {
+  color: white;
+}
+
+#infoLink:hover {
+  color: var(--highlight);
+}
+
 .r4sNavbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 10px 10%;
+  padding: 0 10%;
   background-color: var(--purpleD);
   color: white;
 }
@@ -211,6 +219,7 @@ a:hover {
 .r4sNavbar .title {
   font-size: 1.2rem;
   text-decoration: none;
+  margin: 10px 0;
 }
 
 .r4sNavbar a:hover {
@@ -226,6 +235,61 @@ a:hover {
   margin-left: 20px;
   color: white;
   text-decoration: none;
+  margin: 10px 0 10px 20px;
+}
+
+.navItems .contentBtn {
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 0;
+}
+
+.navDropdown {
+  background-color: var(--purpleD);
+  border-radius: var(--bottonOnly);
+  padding: 10px;
+}
+
+.navDropdown a {
+  margin: 20px 0;
+}
+
+/* Edit Info */
+
+#userModal .modal-body .title,
+#userModal .modal-body .subTitle {
+  margin-left: 10px;
+}
+
+#userModal .modal-body .title {
+  font-size: 1.2rem;
+}
+
+.contentDisplay {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 20px 0;
+}
+
+.contentDisplay .material-symbols-outlined {
+  font-size: 1.5rem;
+}
+
+.contentEdit {
+  display: none;
+  padding-right: 0;
+}
+
+.contentEdit .r4sInput {
+  border-radius: var(--leftOnly);
+  font-size: 1.2rem;
+}
+
+.contentEdit .contentBtn {
+  border-radius: var(--rightOnly);
+  font-size: 1.2rem;
 }
 
 /* footer */
@@ -273,7 +337,7 @@ a:hover {
 
 .loginBlock {
   width: 40vw;
-  padding: 20px 20px 10px 10px !important;
+  /* padding: 20px 20px 10px 10px !important; */
 }
 
 .loginBlock .subTitle {
@@ -282,21 +346,24 @@ a:hover {
 }
 
 .loginBlock .r4sInput {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 100%;
+}
+
+.loginBlock .r4sInput:last-child {
+  margin-bottom: 10px;
 }
 
 .loginBlock .contentBtn {
   border: none;
   padding: 10px 20px;
-  /* width: 100%; */
+  width: 100%;
   color: white;
+  margin-top: 20px;
 }
 
 .loginButtons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: left;
 }
 
 .r4sCheckAndName {
@@ -309,6 +376,27 @@ a:hover {
   border: none;
   vertical-align: baseline;
 }
+
+/* Retry */
+
+.errorText {
+  font-family: var(--bodyFont);
+  color: #f30a63;
+  display: none;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.retry .errorText {
+  display: block;
+}
+
+.retry .r4sInput {
+  border: 2px solid #f30a63;
+  background-color: #fab3ce;
+}
+
+/* Oauth Stuff */
 
 .oAuthBlock {
   width: 40vw;
@@ -462,7 +550,7 @@ a:hover {
 /* modals */
 
 .r4sModal {
-  background-color: var(--purpleD);
+  background-color: var(--greyD);
   border: var(--purpBorder);
   color: white;
   /* width: 60vw; */
@@ -564,7 +652,7 @@ textarea.r4sInput {
 
 .deleteBtn {
   margin-left: 20px;
-  background-color: var(--purpleD);
+  background-color: var(--greyD);
 }
 
 .deleteBtn span {

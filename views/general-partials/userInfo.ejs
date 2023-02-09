@@ -1,0 +1,43 @@
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content r4sModal">
+        <div class="modal-header">
+          <h5 class="title">Manage Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+            <h2 class="subTitle">Username</h2>
+            <div class="contentDisplay">
+                <h1 class="title"><%= user.username %></h1> 
+                <button class="deleteBtn editUserBtn">
+                    <span class="material-symbols-outlined">
+                        edit
+                    </span>
+                </button>
+            </div>
+            <div class="contentDisplay contentEdit">
+                <input class="r4sInput" type="text" value="<%= user.username %>">
+                <button class="contentBtn hlButton" id="updateName">Update</button>
+            </div>
+            <% if(user.email) { %>
+                <h2 class="subTitle">Email</h2>
+                <div class="contentDisplay">
+                    <h1 class="title"><%= user.email %></h1> 
+                    <button class="deleteBtn editUserBtn">
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                    </button>
+                </div>
+                <div class="contentDisplay contentEdit">
+                    <input class="r4sInput" type="email" value="<%= user.email %>">
+                    <button class="contentBtn hlButton" id="updateEmail">Update</button>
+                </div>
+            <% }; %> 
+        </div>
+        <div class="modal-footer">
+            <button class="contentBtn hlButton" data-dismiss="modal" aria-label="Close">Done</button>
+        </div>
+      </div>
+    </div>
+</div>

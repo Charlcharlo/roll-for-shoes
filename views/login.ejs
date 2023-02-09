@@ -8,13 +8,14 @@
         </div>
     </div>
     <div class="contentBlock">
-        <div class="infoBlock loginBlock">
+        <div class="infoBlock loginBlock <%= retry %>">
             <form action="/login" method="post">
                 <h2 class="subTitle">Username</h2>
                 <input type="text" name="username" class="r4sInput" required>
                 <h2 class="subTitle">Password</h2>
                 <input type="password" name="password" class="r4sInput" required>
                 <div class="loginButtons">
+                    <p class="errorText">Incorrect Username or Password</p>
                     <div class="r4sCheckAndName">
                         <input type="checkbox" name="rememberMe">
                         <label for="rememberMe">Remember Me</label>
@@ -26,7 +27,7 @@
     </div>
     <div class="contentBlock">
         <div class="infoBlock oAuthBlock">
-            <a class="oAuthLink" href="">
+            <a class="oAuthLink" href="/auth/google">
                     <span class="fa-brands fa-google"></span>
                     CONTINUE WITH GOOGLE
             </a>

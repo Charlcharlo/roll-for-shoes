@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const passport = require("passport");
 const passportMongoose = require("passport-local-mongoose");
+const findOrCreate = require('mongoose-findorcreate');
+
 
 exports.Skill = class {
     constructor(name, cc, dice) {
@@ -39,9 +41,16 @@ const userSchema = mongoose.Schema({
     username: String,
     email: String,
     password: String,
+    googleId: String,
     characters: Array
 });
 
-userSchema.plugin(passportMongoose, {usernameField: "username"});
+userSchema.plugin(passportMongoose, 
+    {
+        usernameQueryFields: ["email", "username"]
+    }
+);
+
+userSchema.plugin(findOrCreate);
 
 exports.user = userSchema;

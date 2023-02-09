@@ -20,3 +20,50 @@ $(".addItemBuilder").on("click", function() {
         $(this).closest(".itemBlock").remove();
     });
 });
+
+$(".editUserBtn").on("click", function() {
+    const parent = $(this).closest(".contentDisplay");
+    parent.css("display", "none");
+    parent.next().css("display", "flex");
+});
+
+function editDisplay(currentElement, changes) {
+    const parent = currentElement.closest(".contentDisplay");
+    const display = parent.prev();
+    parent.css("display", "none");
+    display.css("display", "flex");
+    display.find(".title").text(changes);
+}
+
+$("#updateEmail").on("click", function() {
+    const current = $(this);
+    const changes = $(this).prev().val();
+    editDisplay(current, changes);
+
+    fetch("/user", {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          "email": changes,
+        })
+    });
+});
+
+$("#updateName").on("click", function() {
+    const current = $(this);
+    const changes = $(this).prev().val();
+    editDisplay(current, changes);
+    $("#usernameNav").text(changes);
+
+    fetch("/user", {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          "username": changes,
+        })
+    });
+});

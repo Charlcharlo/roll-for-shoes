@@ -3,6 +3,16 @@
     <div class="navItems">
         <a href="/my-characters">My Characters</a>
         <a href="https://rollforshoes.com/" target="_blank">Rules</a>
-        <a href="">Profile</a>
+        <div class="btn-group dropdown">
+            <button class="contentBtn dropdown-toggle" id="usernameNav" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= user.username %>
+            </button>
+            <div class="dropdown-menu navDropdown">
+              <a id="infoLink" role="button" data-toggle="modal" data-target="#userModal">Edit Profile</a>
+              <br>
+              <a href="/logout">Log Out</a>
+            </div>
+          </div>
     </div>
 </nav>
+<%- include("userInfo") %>
