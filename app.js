@@ -41,7 +41,6 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/roll-for-shoes"
   },
   function(accessToken, refreshToken, profile, cb) {
-      console.log(profile);
     User.findOrCreate({ googleId: profile.id, username: profile.name.givenName }, function (err, user) {
       return cb(err, user);
     });
@@ -247,7 +246,6 @@ function prepareItems(body) {
         const newNames = body.itemName;
         const newDesc = body.itemDesc;
         const newQty = body.itemQty;
-        console.log(newQty)
 
         for (let index = 0; index < newNames.length; index++) {
             const name = newNames[index];
