@@ -42,7 +42,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/roll-for-shoes",
+      callbackURL:
+        "https://roll-for-shoes.onrender.com//auth/google/roll-for-shoes",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate(
