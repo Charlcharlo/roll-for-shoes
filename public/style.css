@@ -946,6 +946,7 @@ textarea.r4sInput {
 }
 
 @media (max-width: 500px) {
+  .titleBlock .title,
   .title {
     font-size: 2.5rem;
   }
